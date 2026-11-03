@@ -1,0 +1,54 @@
+{
+  "name": "dsh-token-monitor",
+  "version": "0.2.0",
+  "description": "In-app token, model call, and estimated cost dashboard for DeepSeek Harness",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib/client.js",
+    "scripts",
+    "cordis.patch.yml",
+    "rates.example.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "token-monitor",
+    "usage",
+    "cost",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.19",
+    "dsh": ">=0.2.1-rc.5 <0.3.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-api-session-controller",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "scripts": {
+    "build:client": "node ./scripts/build-client.js",
+    "report": "node ./scripts/report.js",
+    "dashboard": "node ./scripts/dashboard.js",
+    "test": "node --test"
+  }
+}
